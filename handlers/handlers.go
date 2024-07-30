@@ -19,35 +19,33 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	// 	if r.Method == http.MethodGet {
 	// 		serveTemplate(w, "templates/login.html")
 	// 	}
-	case "/index", "/Index", "/INDEX":
+	case "/", "/index", "/Index", "/INDEX", "/index.html", "/templates/index.html", "/templates/templates/index.html":
 		// if r.URL.Path == "/index" || r.URL.Path == "/Index" || r.URL.Path == "INDEX"  {
 		// 	http.Redirect(w, r, "/index", http.StatusMovedPermanently)
 		// }
 		if r.Method == http.MethodGet {
 			serveTemplate(w, "templates/index.html")
 		}
-	case "/", "/Home", "/home", "/HOME", "/templates/home.html":
-		if r.URL.Path == "/" || r.URL.Path == "/Home" || r.URL.Path == "/HOME" {
-			http.Redirect(w, r, "/home", http.StatusMovedPermanently)
-		}
+	case "/Home", "/home", "/HOME", "/templates/home.html", "/templates/templates/home.html":
+	
 		if r.Method == http.MethodGet {
 			serveTemplate(w, "templates/home.html")
 		}
-	case "/make_referral", "/Make_referral", "/templates/make_referral.html":
+	case "/make_referral", "/Make_referral", "/templates/make_referral.html", "/templates/templates/make_referral.html":
 		// if r.URL.Path == "/index" || r.URL.Path == "/Index" || r.URL.Path == "INDEX"  {
 		// 	http.Redirect(w, r, "/index", http.StatusMovedPermanently)
 		// }
 		if r.Method == http.MethodGet {
 			serveTemplate(w, "templates/make_referral.html")
 		}
-	case "/check_referral", "/Check_referral", "/templates/check_referral.html":
+	case "/check_referral", "/Check_referral", "/templates/check_referral.html", "/templates/templates/check_referral.html":
 		// if r.URL.Path == "/index" || r.URL.Path == "/Index" || r.URL.Path == "INDEX"  {
 		// 	http.Redirect(w, r, "/index", http.StatusMovedPermanently)
 		// }
 		if r.Method == http.MethodGet {
 			serveTemplate(w, "templates/check_referral.html")
 		}
-	case "/create_reminder", "create_reminder", "/templates/create_reminder.html":
+	case "/create_reminder", "create_reminder", "/templates/create_reminder.html","/templates/templates/create_reminder.html" :
 		// if r.URL.Path == "/index" || r.URL.Path == "/Index" || r.URL.Path == "INDEX"  {
 		// 	http.Redirect(w, r, "/index", http.StatusMovedPermanently)
 		// }
