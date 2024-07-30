@@ -54,6 +54,13 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
 			serveTemplate(w, "templates/create_reminder.html")
 		}
+	case "/referral_services", "referral_services.html", "/templates/referral_services.html","/templates/templates/referral_services.html" :
+		// if r.URL.Path == "/index" || r.URL.Path == "/Index" || r.URL.Path == "INDEX"  {
+		// 	http.Redirect(w, r, "/index", http.StatusMovedPermanently)
+		// }
+		if r.Method == http.MethodGet {
+			serveTemplate(w, "templates/referral_services.html")
+		}
 	}
 	
 }
