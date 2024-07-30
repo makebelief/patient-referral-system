@@ -26,14 +26,44 @@
 
   <!-- Main CSS File -->
   <link href="/static/css/main.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8">
+    <title>Check Referral</title>
+    <style>
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 
-  <!-- =======================================================
-  * Template Name: Vesperr
-  * Template URL: https://bootstrapmade.com/vesperr-free-bootstrap-template/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="index-page">
@@ -94,30 +124,30 @@
               <button type="submit">Check</button>
           </form>
       
-          {{if .Block}}
+          {{if .Data}}
           <h2>Referral Details</h2>
-          <p>Index: {{.Block.Index}}</p>
-          <p>Timestamp: {{.Block.Timestamp}}</p>
-          <p>Previous Hash: {{.Block.PreviousHash}}</p>
-          <p>Hash: {{.Block.Hash}}</p>
-          <p>Data: {{.Block.Data}}</p>
-          <p>POW: {{.Block.POW}}</p>
+          <form>
+              {{range $key, $value := .Data}}
+              <label for="{{$key}}">{{$key}}:</label>
+              <input type="text" id="{{$key}}" name="{{$key}}" value="{{$value}}" readonly>
+              {{end}}
+          </form>
           {{else if .Blocks}}
           <h2>All Blocks</h2>
           <ul>
               {{range .Blocks}}
               <li>
                   <p>Index: {{.Index}}</p>
-                  <p>Timestamp: {{.Timestamp}}</p>
-                  <p>Previous Hash: {{.PreviousHash}}</p>
-                  <p>Hash: {{.Hash}}</p>
-                  <p>Data: {{.Data}}</p>
-                  <p>POW: {{.POW}}</p>
+                  <form>
+                      {{range $key, $value := .Data}}
+                      <label for="{{$key}}">{{$key}}:</label>
+                      <input type="text" id="{{$key}}" name="{{$key}}" value="{{$value}}" readonly>
+                      {{end}}
+                  </form>
               </li>
               {{end}}
           </ul>
           {{end}}
-   
         </div>
       </div>
 

@@ -155,11 +155,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 func checkReferralHandler(w http.ResponseWriter, r *http.Request) {
 	var blocks []struct {
 		Index         int
-		Timestamp     time.Time
-		PreviousHash  string
-		Hash          string
 		Data          map[string]interface{}
-		POW           int
 	}
 
 	patientID := r.URL.Query().Get("patient_id")
@@ -175,80 +171,39 @@ func checkReferralHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// If a patient ID is provided, search for matching blocks
-	var matchingBlock *struct {
-		Index         int
-		Timestamp     time.Time
-		PreviousHash  string
-		Hash          string
-		Data          map[string]interface{}
-		POW           int
-	}
+	var matchingData map[string]interface{}
 
 	// Populate the list of all blocks
 	for i, block := range blockchain.chain {
 		blocks = append(blocks, struct {
-			Index         int
-			Timestamp     time.Time
-			PreviousHash  string
-			Hash          string
-			Data          map[string]interface{}
-			POW           int
+			Index int
+			Data  map[string]interface{}
 		}{
-			Index:         i,
-			Timestamp:     block.timestamp,
-			PreviousHash:  block.previousHash,
-			Hash:          block.hash,
-			Data:          block.data,
-			POW:           block.pow,
+			Index: i,
+			Data:  block.data,
 		})
 
 		// Check if the block's data matches the patientID
 		if block.data["patient ID"] == patientID {
-			matchingBlock = &struct {
-				Index         int
-				Timestamp     time.Time
-				PreviousHash  string
-				Hash          string
-				Data          map[string]interface{}
-				POW           int
-			}{
-				Index:         i,
-				Timestamp:     block.timestamp,
-				PreviousHash:  block.previousHash,
-				Hash:          block.hash,
-				Data:          block.data,
-				POW:           block.pow,
-			}
+			matchingData = block.data
 		}
 	}
 
 	tmpl := template.Must(template.ParseFiles("templates/check_referral.html"))
 	err := tmpl.Execute(w, struct {
-		Block  *struct {
-			Index         int
-			Timestamp     time.Time
-			PreviousHash  string
-			Hash          string
-			Data          map[string]interface{}
-			POW           int
-		}
+		Data   map[string]interface{}
 		Blocks []struct {
-			Index         int
-			Timestamp     time.Time
-			PreviousHash  string
-			Hash          string
-			Data          map[string]interface{}
-			POW           int
+			Index int
+			Data  map[string]interface{}
 		}
 	}{
-		Block:  matchingBlock,
+		Data:   matchingData,
 		Blocks: blocks,
 	})
 	if err != nil {
 		http.Error(w, "Error rendering template", http.StatusInternalServerError)
 	}
 }
-
 
 func main() {
 	if len(os.Args) != 1 {
