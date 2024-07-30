@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send SMS Reminder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Send SMS Reminder</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="send-sms.html">Send SMS Reminder</a></li>
+                <li><a href="view-reminders.html">View Reminders</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Send a Reminder</h2>
+            <form action="/send-sms" method="POST">
+                <label for="phone">Patient's Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Send Reminder</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Digital Referral System</p>
+    </footer>
+</body>
+</html>

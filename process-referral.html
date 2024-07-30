@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Referral</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="home-icon">
+                <img src="house-icon.svg" alt="Home">
+            </a>
+        </div>
+    </header>
+    <main>
+        <section class="form-container">
+            <h2>Process Referral</h2>
+            <form action="/submit-referral" method="post">
+                <div class="form-group">
+                    <label for="patient-name">Patient Name:</label>
+                    <input type="text" id="patient-name" name="patient_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="date-of-referral">Date of Referral:</label>
+                    <input type="date" id="date-of-referral" name="date_of_referral" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone-number">Phone Number:</label>
+                    <input type="tel" id="phone-number" name="phone_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="hospital-name">Hospital Name:</label>
+                    <input type="text" id="hospital-name" name="hospital_name" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="flashy-button">Submit Data</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Digital Referral System</p>
+    </footer>
+</body>
+</html>
