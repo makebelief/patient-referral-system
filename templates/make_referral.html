@@ -87,20 +87,20 @@
 
       <div class="container">
         <div class="row gy-4">
-            <form>
+            <form action="/make_referral_block" method="POST">
                 <h3>Make a referral</h3></br></br>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Patient's ID</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="patient_id" class="form-label">Patient's ID</label>
+                    <input type="text" class="form-control" id="patient_id" name="patient_id" aria-describedby="emailHelp">
                     <div id="emailHelp" class="form-text">Check from patient's file</div>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Reason for referral</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="reason" class="form-label">Reason for referral</label>
+                    <input type="text" class="form-control" id="reason" name="reason" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="disabledSelect" class="form-label">Urgency</label>
-                    <select id="disabledSelect" class="form-select">
+                    <label for="urgency" class="form-label">Urgency</label>
+                    <select id="urgency" class="form-select" name="urgency">
                       <option>...</option>
                       <option>very urgent</option>
                       <option>needed in 3 days</option>
@@ -108,8 +108,8 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="disabledSelect" class="form-label">Choose hospital</label>
-                    <select id="disabledSelect" class="form-select">
+                    <label for="hospital" class="form-label">Choose hospital</label>
+                    <select id="hospital" class="form-select" name="hospital">
                       <option>...</option>
                       <option>hospital A</option>
                       <option>hospital B</option>
@@ -117,12 +117,12 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Enter today's date</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <label for="date" class="form-label">Enter today's date</label>
+                  <input type="date" class="form-control" id="date" aria-describedby="emailHelp" name="date">
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Enter your name</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                  <label for="name" class="form-label">Enter your name</label>
+                  <input type="text" class="form-control" id="name" name="name">
                 </div>
                <!--<div class="mb-3 form-check">
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
