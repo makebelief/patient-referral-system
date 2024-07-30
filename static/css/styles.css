@@ -1,105 +1,109 @@
-/* Apply the background image to the entire page */
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: #333;
-    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/001/330/216/small/healthcare-and-medical-futuristic-abstract-design-free-vector.jpg');
-    background-size: cover; /* Make sure the image covers the whole page */
-    background-position: center; /* Center the image */
-    background-attachment: fixed; /* Keep the image fixed during scrolling */
+    overflow: hidden; /* Ensure background doesn't cause scroll */
 }
 
 header {
-    background-color: rgba(0, 123, 255, 0.8); /* Blue with opacity for transparency */
+    text-align: center;
+    padding: 2rem;
     color: white;
-    padding: 10px 0;
     position: relative;
+    z-index: 1; /* Ensure header content is above the background */
 }
 
-.header-content {
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
 }
 
-.home-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.home-icon img {
-    width: 48px; /* Twice as big */
-    height: 48px; /* Twice as big */
-    border-radius: 50%; /* Circular styling for a more stylish look */
-    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background for better visibility */
-    padding: 5px; /* Padding around the icon */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for a stylish effect */
+header p {
+    font-size: 1.2rem;
 }
 
 main {
-    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 120px); /* Adjust height based on header and footer */
+    flex-direction: column;
+    padding: 2rem;
+    position: relative;
+    z-index: 1; /* Ensure main content is above the background */
 }
 
-.form-container {
-    background-color: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    width: 100%;
-    max-width: 600px; /* Maximum width of the form */
+.contributors {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
-h2 {
+.contributor {
     text-align: center;
-    color: #007BFF; /* Blue color for the header */
+    transition: transform 0.3s ease-in-out;
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-}
-
-.flashy-button {
-    display: inline-block;
-    background-color: #007BFF; /* Blue button */
-    color: white;
-    padding: 15px 25px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
+.contributor img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, box-shadow 0.3s;
-    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 }
 
-.flashy-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+.contributor:hover img {
+    transform: scale(1.1);
 }
 
-.flashy-button:active {
-    background-color: #004085; /* Even darker blue when clicked */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.contributor p {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* Moving Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #0f0f0f, #1a1a1a, #0f0f0f, #1a1a1a);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    z-index: 0;
+    pointer-events: none; /* Allow interaction with elements above */
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contributor {
+    animation: fadeIn 1s ease-in-out;
 }

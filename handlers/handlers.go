@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"os"
 	"regexp"
-
 )
 
 // Index handles requests to "/" and "/Home"
@@ -27,7 +26,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 			serveTemplate(w, "templates/index.html")
 		}
 	case "/Home", "/home", "/HOME", "/templates/home.html", "/templates/templates/home.html":
-	
+
 		if r.Method == http.MethodGet {
 			serveTemplate(w, "templates/home.html")
 		}
@@ -45,18 +44,22 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
 			serveTemplate(w, "templates/check_referral.html")
 		}
-	case "/create_reminder", "create_reminder", "/templates/create_reminder.html","/templates/templates/create_reminder.html" :
+	case "/create_reminder", "create_reminder", "/templates/create_reminder.html", "/templates/templates/create_reminder.html":
 		// if r.URL.Path == "/index" || r.URL.Path == "/Index" || r.URL.Path == "INDEX"  {
 		// 	http.Redirect(w, r, "/index", http.StatusMovedPermanently)
 		// }
 		if r.Method == http.MethodGet {
 			serveTemplate(w, "templates/create_reminder.html")
 		}
+	case "/About", "about", "/about.html", "/temp/about.html":
+		// if r.URL.Path == "/index" || r.URL.Path == "/Index" || r.URL.Path == "INDEX"  {
+		// 	http.Redirect(w, r, "/index", http.StatusMovedPermanently)
+		// }
+		if r.Method == http.MethodGet {
+			serveTemplate(w, "temp/about.html")
+		}
 	}
-	
 }
-
-	
 
 // serveTemplate loads and executes a template file
 func serveTemplate(w http.ResponseWriter, filename string) {

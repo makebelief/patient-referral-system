@@ -103,3 +103,8 @@ h2 {
     background-color: #004085; /* Even darker blue when clicked */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+.row {
+    text-align: center;
+
+}
