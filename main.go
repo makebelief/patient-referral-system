@@ -8,7 +8,7 @@ import (
 	"os/exec"
 	"runtime"
 
-	"digital-referral-system/handlers"
+	"patient-referral-system/handlers"
 )
 
 func openBrowser(url string) {
