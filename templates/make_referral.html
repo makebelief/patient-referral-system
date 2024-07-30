@@ -51,10 +51,10 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="home.html" class="active">Home<br></a></li>
-          <li><a href="make_referral.html">Make Referrals</a></li>
-          <li><a href="check_referral.html">Check Referrals</a></li>
-          <li><a href="create_reminder.html">Create Reminders</a></li>
+          <li><a href="/home" class="active">Home<br></a></li>
+          <li><a href="/make_referral">Make Referrals</a></li>
+          <li><a href="/check_referral">Check Referrals</a></li>
+          <li><a href="/create_reminder">Create Reminders</a></li>
         <!--  <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="#">Dropdown 1</a></li>
@@ -89,20 +89,24 @@
 
       <div class="container">
         <div class="row gy-4">
-            <form>
+            <form action="/make_referral_block" method="POST">
                 <h3>Make a referral</h3></br></br>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Patient's ID</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="patient_id" class="form-label">Patient's ID</label>
+                    <input type="text" class="form-control" id="patient_id" name="patient_id" aria-describedby="emailHelp">
                     <div id="emailHelp" class="form-text">Check from patient's file</div>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Reason for referral</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <label for="patient_id" class="form-label">Clinnical summary and investigations</label>
+                  <input type="text" class="form-control" id="clinical_summary" name="clinical_summary" aria-describedby="emailHelp">
+              </div>
+                <div class="mb-3">
+                    <label for="reason" class="form-label">Reason for referral</label>
+                    <input type="text" class="form-control" id="reason" name="reason" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="disabledSelect" class="form-label">Urgency</label>
-                    <select id="disabledSelect" class="form-select">
+                    <label for="urgency" class="form-label">Urgency</label>
+                    <select id="urgency" class="form-select" name="urgency">
                       <option>...</option>
                       <option>very urgent</option>
                       <option>needed in 3 days</option>
@@ -110,21 +114,21 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="disabledSelect" class="form-label">Choose hospital</label>
-                    <select id="disabledSelect" class="form-select">
+                    <label for="hospital" class="form-label">Choose hospital</label>
+                    <select id="hospital" class="form-select" name="hospital">
                       <option>...</option>
-                      <option>hospital A</option>
-                      <option>hospital B</option>
-                      <option>hospital C</option>
+                      <option>Jaramogi Teaching & Referal Hospital</option>
+                      <option>Moi Teaching & Referal Hospital</option>
+                      <option>Kisumu County Referal Hospital</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Enter today's date</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <label for="date" class="form-label">Enter today's date</label>
+                  <input type="date" class="form-control" id="date" aria-describedby="emailHelp" name="date">
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Enter your name</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                  <label for="name" class="form-label">Enter your name</label>
+                  <input type="text" class="form-control" id="name" name="name">
                 </div>
                <!--<div class="mb-3 form-check">
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
