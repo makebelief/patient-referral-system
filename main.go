@@ -74,9 +74,10 @@ func CreateBlockchain(difficulty int) Blockchain {
 	}
 }
 //add blocks to the chain
-func (b *Blockchain) addBlock(patient_id string, reason string, urgency string, hospital string, date string, name string) {
+func (b *Blockchain) addBlock(patient_id string, clinical_summary string, reason string, urgency string, hospital string, date string, name string) {
 	blockData := map[string]interface{}{
 			"patient ID":   patient_id,
+			"clinical_summary": clinical_summary,
 			"reason for ref":  reason,
 			"urgency": urgency,
 			"hospital": hospital,
@@ -137,6 +138,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
         // fmt.Println("Name:", r.FormValue("name"))
 
         patientID := r.FormValue("patient_id")
+		clinical_summary := r.FormValue("clinical_summary")
         reason := r.FormValue("reason")
         urgency := r.FormValue("urgency")
         hospital := r.FormValue("hospital")
@@ -144,7 +146,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
         name := r.FormValue("name")
 
 		//blockchain := CreateBlockchain(3)
-        blockchain.addBlock(patientID, reason, urgency, hospital, date, name)
+        blockchain.addBlock(patientID, clinical_summary, reason, urgency, hospital, date, name)
 		blockchain.printBlockchain()
 		http.Redirect(w, r, "/make_referral", http.StatusSeeOther)
 
