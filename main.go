@@ -153,9 +153,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-
 func checkReferralHandler(w http.ResponseWriter, r *http.Request) {
-	// Create a list to hold block information
 	var blocks []struct {
 		Index         int
 		Timestamp     time.Time
@@ -165,6 +163,18 @@ func checkReferralHandler(w http.ResponseWriter, r *http.Request) {
 		POW           int
 	}
 
+	patientID := r.URL.Query().Get("patient_id")
+
+	var matchingBlock *struct {
+		Index         int
+		Timestamp     time.Time
+		PreviousHash  string
+		Hash          string
+		Data          map[string]interface{}
+		POW           int
+	}
+
+	// Populate the list of all blocks
 	for i, block := range blockchain.chain {
 		blocks = append(blocks, struct {
 			Index         int
@@ -181,14 +191,54 @@ func checkReferralHandler(w http.ResponseWriter, r *http.Request) {
 			Data:          block.data,
 			POW:           block.pow,
 		})
+
+		// Check if the block's data matches the patientID
+		if block.data["patient ID"] == patientID {
+			matchingBlock = &struct {
+				Index         int
+				Timestamp     time.Time
+				PreviousHash  string
+				Hash          string
+				Data          map[string]interface{}
+				POW           int
+			}{
+				Index:         i,
+				Timestamp:     block.timestamp,
+				PreviousHash:  block.previousHash,
+				Hash:          block.hash,
+				Data:          block.data,
+				POW:           block.pow,
+			}
+		}
 	}
 
 	tmpl := template.Must(template.ParseFiles("templates/check_referral.html"))
-	err := tmpl.Execute(w, blocks)
+	err := tmpl.Execute(w, struct {
+		Block  *struct {
+			Index         int
+			Timestamp     time.Time
+			PreviousHash  string
+			Hash          string
+			Data          map[string]interface{}
+			POW           int
+		}
+		Blocks []struct {
+			Index         int
+			Timestamp     time.Time
+			PreviousHash  string
+			Hash          string
+			Data          map[string]interface{}
+			POW           int
+		}
+	}{
+		Block:  matchingBlock,
+		Blocks: blocks,
+	})
 	if err != nil {
 		http.Error(w, "Error rendering template", http.StatusInternalServerError)
 	}
 }
+
 
 
 func main() {

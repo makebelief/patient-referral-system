@@ -87,28 +87,54 @@
 
       <div class="container">
         <div class="row gy-4"> 
-          <h1>Referral Details</h1>
-          {{ if . }}
-          <ul>
-              {{ range . }}
-              <li>
-                  <strong>Block #{{ .Index }}:</strong><br>
-                  Timestamp: {{ .Timestamp }}<br>
-                  Previous Hash: {{ .PreviousHash }}<br>
-                  Hash: {{ .Hash }}<br>
-                  Data:<br>
-                  <ul>
-                      {{ range $key, $value := .Data }}
-                      <li><strong>{{ $key }}:</strong> {{ $value }}</li>
-                      {{ end }}
-                  </ul>
-                  POW: {{ .POW }}<br>
-              </li>
-              {{ end }}
-          </ul>
-          {{ else }}
-          <p>No block data available.</p>
-          {{ end }}
+          
+    <h1>Referral Details</h1>
+    
+    <!-- Form to search for a specific patient_id -->
+    <form action="/check_referral" method="get">
+        <label for="patient_id">Enter Patient ID:</label>
+        <input type="text" id="patient_id" name="patient_id">
+        <input type="submit" value="Search">
+    </form>
+
+    {{ if .Block }}
+    <h2>Block Details:</h2>
+    <ul>
+        <li><strong>Block #{{ .Block.Index }}:</strong></li>
+        <li>Timestamp: {{ .Block.Timestamp }}</li>
+        <li>Previous Hash: {{ .Block.PreviousHash }}</li>
+        <li>Hash: {{ .Block.Hash }}</li>
+        <li>Data:
+            <ul>
+                {{ range $key, $value := .Block.Data }}
+                <li><strong>{{ $key }}:</strong> {{ $value }}</li>
+                {{ end }}
+            </ul>
+        </li>
+        <li>POW: {{ .Block.POW }}</li>
+    </ul>
+    {{ else }}
+    <p>No data found for the given Patient ID.</p>
+    {{ end }}
+
+    <h2>All Blocks:</h2>
+    <ul>
+        {{ range .Blocks }}
+        <li>
+            <strong>Block #{{ .Index }}:</strong><br>
+            Timestamp: {{ .Timestamp }}<br>
+            Previous Hash: {{ .PreviousHash }}<br>
+            Hash: {{ .Hash }}<br>
+            Data:<br>
+            <ul>
+                {{ range $key, $value := .Data }}
+                <li><strong>{{ $key }}:</strong> {{ $value }}</li>
+                {{ end }}
+            </ul>
+            POW: {{ .POW }}<br>
+        </li>
+        {{ end }}
+    </ul>
         </div>
       </div>
 
