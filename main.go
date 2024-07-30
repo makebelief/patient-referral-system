@@ -39,6 +39,8 @@ func main() {
 	http.HandleFunc("/", handlers.Index)
     http.HandleFunc("/index", handlers.Index)
 
+    
+
 //	http.HandleFunc("/ascii-art", handlers.HandleASCIIArt)
 
 	// Serve static files
