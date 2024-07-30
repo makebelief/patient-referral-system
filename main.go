@@ -15,7 +15,7 @@ import (
 	"strings"
 	"time"
 )
-var blockchain = CreateBlockchain(30)
+var blockchain = CreateBlockchain(3)
 
 func openBrowser(url string) {
 	var err error
@@ -212,7 +212,7 @@ func main() {
 		fmt.Println("usage: go run .")
 		return
 	}
-
+	
 	// Define HTTP handlers
 	http.HandleFunc("/", handlers.Index)
     http.HandleFunc("/index", handlers.Index)
@@ -226,7 +226,7 @@ func main() {
 	// Serve static files
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
-
+	
 	// Defining server protocol and http port
 	url := "http://localhost:3000"
 	log.Println("Server is running on", url)
