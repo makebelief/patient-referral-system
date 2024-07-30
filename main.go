@@ -146,13 +146,12 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 		//blockchain := CreateBlockchain(3)
         blockchain.addBlock(patientID, reason, urgency, hospital, date, name)
 		blockchain.printBlockchain()
-		http.Redirect(w, r, "/check_referral", http.StatusSeeOther)
+		http.Redirect(w, r, "/make_referral", http.StatusSeeOther)
 
 		// tmpl := template.Must(template.ParseFiles("templates/check_referral.html"))
 		//  tmpl.Execute(w, blockchain.printBlockchain)
     }
 }
-
 func checkReferralHandler(w http.ResponseWriter, r *http.Request) {
 	var blocks []struct {
 		Index         int
@@ -165,6 +164,17 @@ func checkReferralHandler(w http.ResponseWriter, r *http.Request) {
 
 	patientID := r.URL.Query().Get("patient_id")
 
+	// If no patient ID is provided, render the form to enter it
+	if patientID == "" {
+		tmpl := template.Must(template.ParseFiles("templates/check_referral.html"))
+		err := tmpl.Execute(w, nil)
+		if err != nil {
+			http.Error(w, "Error rendering template", http.StatusInternalServerError)
+		}
+		return
+	}
+
+	// If a patient ID is provided, search for matching blocks
 	var matchingBlock *struct {
 		Index         int
 		Timestamp     time.Time
@@ -238,7 +248,6 @@ func checkReferralHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error rendering template", http.StatusInternalServerError)
 	}
 }
-
 
 
 func main() {

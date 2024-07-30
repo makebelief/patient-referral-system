@@ -87,54 +87,37 @@
 
       <div class="container">
         <div class="row gy-4"> 
-          
-    <h1>Referral Details</h1>
-    
-    <!-- Form to search for a specific patient_id -->
-    <form action="/check_referral" method="get">
-        <label for="patient_id">Enter Patient ID:</label>
-        <input type="text" id="patient_id" name="patient_id">
-        <input type="submit" value="Search">
-    </form>
-
-    {{ if .Block }}
-    <h2>Block Details:</h2>
-    <ul>
-        <li><strong>Block #{{ .Block.Index }}:</strong></li>
-        <li>Timestamp: {{ .Block.Timestamp }}</li>
-        <li>Previous Hash: {{ .Block.PreviousHash }}</li>
-        <li>Hash: {{ .Block.Hash }}</li>
-        <li>Data:
-            <ul>
-                {{ range $key, $value := .Block.Data }}
-                <li><strong>{{ $key }}:</strong> {{ $value }}</li>
-                {{ end }}
-            </ul>
-        </li>
-        <li>POW: {{ .Block.POW }}</li>
-    </ul>
-    {{ else }}
-    <p>No data found for the given Patient ID.</p>
-    {{ end }}
-
-    <h2>All Blocks:</h2>
-    <ul>
-        {{ range .Blocks }}
-        <li>
-            <strong>Block #{{ .Index }}:</strong><br>
-            Timestamp: {{ .Timestamp }}<br>
-            Previous Hash: {{ .PreviousHash }}<br>
-            Hash: {{ .Hash }}<br>
-            Data:<br>
-            <ul>
-                {{ range $key, $value := .Data }}
-                <li><strong>{{ $key }}:</strong> {{ $value }}</li>
-                {{ end }}
-            </ul>
-            POW: {{ .POW }}<br>
-        </li>
-        {{ end }}
-    </ul>
+          <h1>Check Referral</h1>
+          <form action="/check_referral" method="get">
+              <label for="patient_id">Patient ID:</label>
+              <input type="text" id="patient_id" name="patient_id" required>
+              <button type="submit">Check</button>
+          </form>
+      
+          {{if .Block}}
+          <h2>Referral Details</h2>
+          <p>Index: {{.Block.Index}}</p>
+          <p>Timestamp: {{.Block.Timestamp}}</p>
+          <p>Previous Hash: {{.Block.PreviousHash}}</p>
+          <p>Hash: {{.Block.Hash}}</p>
+          <p>Data: {{.Block.Data}}</p>
+          <p>POW: {{.Block.POW}}</p>
+          {{else if .Blocks}}
+          <h2>All Blocks</h2>
+          <ul>
+              {{range .Blocks}}
+              <li>
+                  <p>Index: {{.Index}}</p>
+                  <p>Timestamp: {{.Timestamp}}</p>
+                  <p>Previous Hash: {{.PreviousHash}}</p>
+                  <p>Hash: {{.Hash}}</p>
+                  <p>Data: {{.Data}}</p>
+                  <p>POW: {{.POW}}</p>
+              </li>
+              {{end}}
+          </ul>
+          {{end}}
+   
         </div>
       </div>
 
