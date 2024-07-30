@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  
+  <title>DocRef</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,18 +26,46 @@
 
   <!-- Main CSS File -->
   <link href="/static/css/main.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8">
+    <title>Check Referral</title>
+    <style>
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 
-  <!-- =======================================================
-  * Template Name: Vesperr
-  * Template URL: https://bootstrapmade.com/vesperr-free-bootstrap-template/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
-<img src="/static/img/tiba.png" alt="Logo"> 
- 
 <body class="index-page">
 
   <header id="header" class="header d-flex align-items-center sticky-top">
@@ -46,7 +74,7 @@
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="/static/img/logo.png" alt=""> -->
-        <h1 class="sitename"></h1>
+        <h1 class="sitename">DocRef</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -88,54 +116,73 @@
     <section id="hero" class="hero section">
 
       <div class="container">
-        <div class="row gy-4">
-            <form action="/make_referral_block" method="POST">
-                <h3>Make a referral</h3></br></br>
-                <div class="mb-3">
-                    <label for="patient_id" class="form-label">Patient's ID</label>
-                    <input type="text" class="form-control" id="patient_id" name="patient_id" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">Check from patient's file</div>
-                </div>
-                <div class="mb-3">
-                  <label for="patient_id" class="form-label">Clinnical summary and investigations</label>
-                  <input type="text" class="form-control" id="clinical_summary" name="clinical_summary" aria-describedby="emailHelp">
-              </div>
-                <div class="mb-3">
-                    <label for="reason" class="form-label">Reason for referral</label>
-                    <input type="text" class="form-control" id="reason" name="reason" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label for="urgency" class="form-label">Urgency</label>
-                    <select id="urgency" class="form-select" name="urgency">
-                      <option>...</option>
-                      <option>very urgent</option>
-                      <option>needed in 3 days</option>
-                      <option>needed within a week</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="hospital" class="form-label">Choose hospital</label>
-                    <select id="hospital" class="form-select" name="hospital">
-                      <option>...</option>
-                      <option>Jaramogi Teaching & Referal Hospital</option>
-                      <option>Moi Teaching & Referal Hospital</option>
-                      <option>Kisumu County Referal Hospital</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                  <label for="date" class="form-label">Enter today's date</label>
-                  <input type="date" class="form-control" id="date" aria-describedby="emailHelp" name="date">
-                </div>
-                <div class="mb-3">
-                  <label for="name" class="form-label">Enter your name</label>
-                  <input type="text" class="form-control" id="name" name="name">
-                </div>
-               <!--<div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div> -->
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+        <div class="row gy-4"> 
+            <h2>Services</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Hospital</th>
+                      <th scope="col">MRI Scan</th>
+                      <th scope="col">CT scan</th>
+                      <th scope="col">Dialysis</th>
+                      <th scope="col">Kidney transplant</th>
+                      <th scope="col">Chemotherapy</th>
+
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Aga khan</td>
+                      <td style="color:green;">Available</td>
+                      <td style="color:green;">Available</td>
+                      <td style="color: red;">Unavailable</td>
+                      <td style="color: red;">Unavailable</td>
+                      <td style="color:green;">Available</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Moi Teaching & Referal Hospital</td>
+                        <td style="color:green;">Available</td>
+                        <td style="color:green;">Available</td>
+                        <td style="color: red;">Unavailable</td>
+                        <td style="color: red;">Unavailable</td>
+                        <td style="color:green;">Available</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Jaramogi Teaching & Referal Hospital</td>
+                        <td style="color:green;">Available</td>
+                        <td style="color: red;">unavailable</td>
+                        <td style="color: green;">Aavailable</td>
+                        <td style="color: green;">Available</td>
+                        <td style="color:green;">Available</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Kisumu County Referal Hospital</td>
+                        <td style="color:green;">Available</td>
+                        <td style="color: red;">unavailable</td>
+                        <td style="color: green;">Available</td>
+                        <td style="color: green;">Available</td>
+                        <td style="color:red;">Unvailable</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Avenue Hospital Kisumu</td>
+                        <td style="color:green;">Available</td>
+                        <td style="color: green;">Available</td>
+                        <td style="color: green;">Available</td>
+                        <td style="color: green;">Available</td>
+                        <td style="color:red;">Unvailable</td>
+                    </tr>
+                  
+                  </tbody>
+                
+              </table>
         </div>
       </div>
 
@@ -149,7 +196,7 @@
 
     <div class="container">
       <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename"></strong> <span>All Rights Reserved</span></p>
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">DocRef</strong> <span>All Rights Reserved</span></p>
       </div>
       <div class="social-links d-flex justify-content-center">
         <a href=""><i class="bi bi-twitter-x"></i></a>
