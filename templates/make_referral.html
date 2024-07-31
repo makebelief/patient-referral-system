@@ -34,6 +34,17 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <script>
+    function generateID() {
+        // Generate a random 8-digit number
+        const min = 10000000;
+        const max = 99999999;
+        const randomID = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        // Set the value of the patient_id field
+        document.getElementById('patient_id').value = randomID;
+    }
+</script>
 </head>
 
  
@@ -94,7 +105,8 @@
                 <div class="mb-3">
                     <label for="patient_id" class="form-label">Patient's ID</label>
                     <input type="text" class="form-control" id="patient_id" name="patient_id" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">Check from patient's file</div>
+                    <button type="button" onclick="generateID()">Generate ID</button><br><br>
+                 <!--   <div id="emailHelp" class="form-text">Check from patient's file</div> -->
                 </div>
                 <div class="mb-3">
                   <label for="patient_id" class="form-label">Clinnical summary and investigations</label>
